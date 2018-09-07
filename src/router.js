@@ -1,25 +1,38 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Home from './views/Home.vue'
+import Navigation from './views/Navigation'
+import Nest1 from './views/Nest1'
+import TopLevelComponent from './views/TopLevelComponent'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
+  routes: [{
+      path: '*',
+      redirect: '/Home'
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
+      path: '/Home/',
+      name: 'Home',
+      components: {
+        default: Home,
+        helperview: '',
+        navmenu: Navigation
+      },
+      props: true
+    },
+    {
+      path: '/Nested',
+      name: 'TopLevelComponent',
+      props: false,
+      components: {
+        default: TopLevelComponent,
+        helperview: Nest1,
+        navmenu: Navigation
+      }
+    }]
 })

@@ -1,18 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div>
+        <br><br><br><br>
+        <input type='button' @click='nextPage()' name="clickme" value="Click Me">
+
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+    name: 'Home',
+    data () {
+        return {
+            value1: 'Aaa',
+            value2: 'Bbb'
+        }
+    },
+    methods: {
+        nextPage (){
+            this.$store.dispatch('setChickenSoup', 'Chicken Soup with Stars')
+            this.$router.push({ 
+                name: 'TopLevelComponent', 
+                params: {
+                    firstvalue: this.value1,
+                    secondvalue: this.value2
+                }
+            })
+        }
+    }
 }
 </script>

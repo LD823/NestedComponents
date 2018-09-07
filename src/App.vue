@@ -1,10 +1,18 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id='app'>
+    <header/>
+    <div class='row'>
+      <div class='col-sm-12 col-md-2 col-lg-2'>
+        <router-view name="navigate"/>
+      </div>
+      <div class='col-sm-12 col-md-10 col-lg-10'>
+        <transition>
+          <router-view/>
+        </transition>
+        <router-view name="helperview"/>
+      </div>
     </div>
-    <router-view/>
+    <footer/>
   </div>
 </template>
 
